@@ -1,0 +1,12 @@
+source "https://rubygems.org"
+
+ gem "roda"
+ gem "sequel"
+ gem "sqlite3"
+ gem "rake"
+ gem "pry"
+ gem "minitest"
+ gem "thin"
+ gem "rack-test"
+ gem "slim"
+ gem "recaptcha"
