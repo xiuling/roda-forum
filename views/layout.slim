@@ -10,4 +10,25 @@ html
     script src='/statics/semantic.min.js'
     script src="/statics/jquery-ui.min.js"
   body
+    .ui.fixed.inverted.menu
+      .ui.container
+        a.header.item href="/" 首页
+        - if @nickname
+          .right.floated.item
+            .ui.button #{session['user']}
+        - else
+          .right.floated.item
+            a.ui.button href="/login" 登录
+    .ui.hidden.divider
+    .ui.hidden.divider
+    .ui.hidden.divider
+    .ui.container
+
     == yield
+
+    .ui.hidden.divider
+    .ui.hidden.divider
+    footer.ui.center.aligned.page.grid
+      | copyright by xiuling
+    .ui.hidden.divider
+    .ui.hidden.divider

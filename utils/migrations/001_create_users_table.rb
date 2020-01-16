@@ -5,7 +5,7 @@ Sequel.migration do
       String :name, null: false
       String :avatar
       String :email, null: false
-      String :tel, null: false
+      String :tel
       String :password, null: false
       String :wechat
       String :facebook

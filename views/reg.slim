@@ -1,1 +1,17 @@
-'reg'
+.ui.middle.aligned.center.aligned.grid
+  .column
+    .ui.header 注册
+    form.ui.form action="reg" method="post"
+      .field
+        .ui.left.icon.input
+          i.user.icon
+          input type="text" name="username" placeholder="请输入用户名" required="true"
+      .field
+        .ui.left.icon.input
+          i.envelope.icon
+          input type="text" name="email" placeholder="请输入邮箱" required="true"
+      .field
+        .ui.left.icon.input
+          i.lock.icon
+          input type="password" name="password" placeholder="请输入密码" required="true"
+      button.ui.fluid.large.blue.submit.button 注册

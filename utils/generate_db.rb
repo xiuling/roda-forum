@@ -7,6 +7,7 @@ DB.create_table? :users do
   String :name, null: false # 用户name
   String :password, null: false # 用户密码
   String :email, null: false # 用户邮箱
+  String :tel
   String :avatar # 头像
   String :wechat
   String :facebook
