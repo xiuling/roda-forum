@@ -13,6 +13,7 @@ html
     .ui.fixed.inverted.menu
       .ui.container
         a.header.item href="/" 首页
+        a.header.item href="/add_post" 发布
         - if @nickname
           .right.floated.item
             .ui.button #{session['user']}

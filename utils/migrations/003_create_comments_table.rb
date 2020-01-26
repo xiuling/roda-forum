@@ -6,8 +6,8 @@ Sequel.migration do
       foreign_key :post_id, :posts, :on_delete=>:cascade, :on_update=>:cascade
       Integer :parent_id # 回复的评论id
       String :content, null: false
-      DateTime :create_time, null: false
-      DateTime :update_time, null: false
+      DateTime :created_at, null: false
+      DateTime :updated_at, null: false
     end
   end
 

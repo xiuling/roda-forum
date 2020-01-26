@@ -5,8 +5,8 @@ Sequel.migration do
       foreign_key :user_id, :users, :on_delete=>:cascade, :on_update=>:cascade
       String :title, null: false
       String :content
-      DateTime :create_time, null: false
-      DateTime :update_time, null: false
+      DateTime :created_at, null: false
+      DateTime :updated_at, null: false
     end
   end
 

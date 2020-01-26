@@ -1,1 +1,11 @@
-p hello
+div.ui.relaxed.divided.list
+- if !@data.empty?
+  - @data.each do |post|
+    div.item
+      div.content
+        a.header href="/post/#{post[:id]}" #{post[:title]}
+        div.description #{post[:updated_at]} 前更新
+- else
+  p
+  |
+  a href="/add_post" 点击发布

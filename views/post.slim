@@ -1,0 +1,7 @@
+div.ui
+- if @data
+  div.content
+    p.header #{@data[:title]}
+    p.description #{@data[:updated_at]} 前更新
+  div.content
+    div.description #{@data[:content]}

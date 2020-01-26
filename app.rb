@@ -24,6 +24,7 @@ class Forum < Roda
     r.public
     @nickname = session['user'] if session['user']
     r.root do
+      @data = DbService.get_all_posts
       @title = 'hello'
       view 'index'
     end
@@ -62,10 +63,48 @@ class Forum < Roda
           user = DbService.login(r.params['username'], r.params['password'])
           if !user.nil?
             session['user'] = r.params['username']
+            session['user_id'] = user.id
             r.redirect '/'
           end
         end
         r.redirect '/login'
+      end
+    end
+
+    r.get 'logout' do 
+      session['user'] = nil
+      session['user_id'] = nil
+
+      r.redirect '/'
+    end
+    r.is 'add_post' do
+      r.redirect '/' if session['user_id'].nil?
+      r.get do
+        @title = 'add post'
+        view 'add_post'
+      end
+      r.post do
+        r.params['title'] ||= ''
+        r.params['content'] ||= ''
+        r.params['title'].strip!
+        r.params['content'].strip!
+        if !r.params['title'].empty?
+          post = DbService.add_post(r.params['title'], r.params['content'], session['user_id'])
+          if !post.nil?
+            r.redirect '/post/' + post.id.to_s
+          end
+        end
+        r.redirect r.referrer
+      end
+    end
+    r.get 'post', Integer do |id|
+      r.redirect '/' if id.nil?
+      @data = DbService.get_post(id)
+      if !@data.nil?
+        @title = @data.title
+        view 'post'
+      else
+        r.redirect '/'
       end
     end
     r.multi_route

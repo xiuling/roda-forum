@@ -1,0 +1,13 @@
+.ui.middle.aligned.center.aligned.grid
+  .column
+    .ui.header 发布新主题
+    form.ui.form action="add_post" method="post"
+      .field
+        .ui.left.icon.input
+          i.file.code.icon
+          input type="text" name="title" placeholder="请输入标题" required="true"
+      .field
+        .ui.left.icon.input
+          i.file.alternate.icon
+          textarea name="content" placeholder="请输入内容"
+      button.ui.fluid.large.blue.submit.button 发布
