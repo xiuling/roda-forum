@@ -7,8 +7,8 @@ html
     link rel='stylesheet' type='text/css' href='/statics/semantic.min.css'
     link rel='icon' type='image/png' href='/favicon.ico'
     script src='/statics/jquery-3.1.1.min.js'
-    script src='/statics/semantic.min.js'
-    script src="/statics/jquery-ui.min.js"
+    style
+      | .ui.wide.card { width: 100%; }
   body
     .ui.fixed.inverted.menu
       .ui.container
@@ -20,12 +20,13 @@ html
         - else
           .right.floated.item
             a.ui.button href="/login" 登录
+            a.ui.button href="/reg" 注册
     .ui.hidden.divider
     .ui.hidden.divider
     .ui.hidden.divider
     .ui.container
 
-    == yield
+      == yield
 
     .ui.hidden.divider
     .ui.hidden.divider
@@ -33,3 +34,5 @@ html
       | copyright by xiuling
     .ui.hidden.divider
     .ui.hidden.divider
+    script src='/statics/semantic.min.js'
+    script src="/statics/jquery-ui.min.js"

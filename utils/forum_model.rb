@@ -3,6 +3,9 @@ require 'sequel'
 Db = Sequel.connect("sqlite://forum.db")
 module ForumModel
 
+  def self.get_all_posts
+    Db[:posts].join(:users, id: :user_id).reverse_order(:updated_at).limit(20)
+  end
   class Users < Sequel::Model
     one_to_many :posts
     one_to_many :comments

@@ -1,11 +1,12 @@
-div.ui.relaxed.divided.list
-- if !@data.empty?
-  - @data.each do |post|
-    div.item
-      div.content
-        a.header href="/post/#{post[:id]}" #{post[:title]}
-        div.description #{post[:updated_at]} 前更新
-- else
-  p
-  |
-  a href="/add_post" 点击发布
+.ui.center.aligned.segment
+  .ui.middle.aligned.divided.list
+    - if !@data.empty?
+      - @data.each do |post|
+        .item
+          .right.floated.content
+            == getduration(post[:updated_at]) + '前由 '+ post[:name] +' 更新'
+          .content
+            a.header href="/post/#{post[:id]}" #{post[:title]}
+    - else
+      p 暂无主题
+      a href="/add_post" 点击发布

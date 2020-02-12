@@ -15,8 +15,8 @@ module DbService
     ForumModel::Users.where(name: name, password: pass).first
   end
   def self.get_all_posts
-    #ForumModel::Posts.get(:id, :title, :create_at, :update_at).join(users, id: :user_id).reverse_order(:update_at).limit(20)
-    ForumModel::Posts.select(:id, :title, :created_at, :updated_at).reverse_order(:updated_at).limit(20).all
+    ForumModel.get_all_posts
+    #ForumModel::Posts.select(:id, :title, :created_at, :updated_at).reverse_order(:updated_at).limit(20).all
   end
   def self.add_post(title, content, user_id)
     ForumModel::Posts.create(
