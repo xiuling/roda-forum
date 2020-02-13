@@ -3,7 +3,7 @@
     - if !@data.empty?
       - @data.each do |post|
         .item
-          .right.floated.content
+          .right.floated.content.small
             == getduration(post[:updated_at]) + '前由 '+ post[:name] +' 更新'
           .content
             a.header href="/post/#{post[:id]}" #{post[:title]}

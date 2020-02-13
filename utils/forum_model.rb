@@ -4,7 +4,7 @@ Db = Sequel.connect("sqlite://forum.db")
 module ForumModel
 
   def self.get_all_posts
-    Db[:posts].join(:users, id: :user_id).reverse_order(:updated_at).limit(20)
+    Db["select posts.id, posts.title, posts.updated_at, users.name from posts inner join users on posts.user_id=users.id order by posts.updated_at desc limit 20"]
   end
   class Users < Sequel::Model
     one_to_many :posts

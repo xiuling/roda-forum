@@ -25,7 +25,7 @@ class Forum < Roda
     @nickname = session['user'] if session['user']
     r.root do
       @data = DbService.get_all_posts
-      @title = 'hello'
+      @title = 'index'
       view 'index'
     end
     r.is 'reg' do

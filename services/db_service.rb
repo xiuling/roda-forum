@@ -16,7 +16,6 @@ module DbService
   end
   def self.get_all_posts
     ForumModel.get_all_posts
-    #ForumModel::Posts.select(:id, :title, :created_at, :updated_at).reverse_order(:updated_at).limit(20).all
   end
   def self.add_post(title, content, user_id)
     ForumModel::Posts.create(
