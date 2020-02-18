@@ -108,6 +108,17 @@ class Forum < Roda
       end
     end
     r.multi_route
+    r.post 'post_comment' do
+      r.redirect '/' if session['user_id'].nil?
+      r.params['content'] ||= ''
+      r.params['post_id'] ||= 0
+      r.params['parent_id'] ||= 0
+      r.params['content'].strip!
+      if !(r.params['post_id'] == 0) && !r.params['content'].empty?
+        DbService.add_post_comment(r.params['content'], r.params['post_id'], r.params['parent_id'], session['user_id'])
+      end
+      r.redirect r.referrer
+    end
   end
 
   Dir['./helpers/*.rb'].each {|f| require f}

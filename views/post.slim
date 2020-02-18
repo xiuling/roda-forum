@@ -1,10 +1,32 @@
 - if @data
   .ui.wide.card
     .content
-      .header #{@data[:title]}
+      h3.header #{@data[:title]}
     .content
       .event
         .content
           .summary #{@data[:content]}
     .extra.content
       .summary #{@data[:updated_at]} 前更新
+  .ui.hidden.divider
+  .ui.comments
+    h4.ui.dividing.header 评论
+    - if @data[:comments]
+      - @data[:comments].each do |comment|
+        .comment
+          .content
+            - if comment[:name]
+               = "#{comment[:name]}"
+            - else
+               | 匿名用户
+            .metadata
+              span.date #{comment[:updated_at]}
+            .text #{comment[:content]}
+    - if @nickname
+      form.ui.reply.form action="/post_comment" method="post"
+        .field
+          textarea name="content" required="true"
+          input name="post_id" type="hidden"
+          input name="parent_id" type="hidden"
+        button.ui.black.submit.icon.button 提交
+
