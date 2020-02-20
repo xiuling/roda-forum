@@ -16,17 +16,27 @@
         .comment
           .content
             - if comment[:name]
-               = "#{comment[:name]}"
+              a.author data-name="#{comment[:name]}" #{comment[:name]}
             - else
-               | 匿名用户
+              | 匿名用户
             .metadata
               span.date #{comment[:updated_at]}
+              a.reply data-id="#{comment[:id]}" 回复
             .text #{comment[:content]}
     - if @nickname
-      form.ui.reply.form action="/post_comment" method="post"
+      form.ui.form action="/post_comment" method="post"
         .field
           textarea name="content" required="true"
-          input name="post_id" type="hidden"
-          input name="parent_id" type="hidden"
+        input name="post_id" type="hidden" value="#{@data[:id]}"
+        input name="parent_id" type="hidden"
         button.ui.black.submit.icon.button 提交
+  javascript:
+    $(document).ready(function(){
+      $("a.reply").click(function () {
+        var id = $(this).data("id");
+        $("input[name=parent_id]").val(id);
+        var author = $(this).parent().siblings('a.author').data("name");
+        $("textarea[name=content]").val("@" + author + " ").focus();
+      });
+    });
 
