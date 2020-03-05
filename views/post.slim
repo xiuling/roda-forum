@@ -28,15 +28,17 @@
         .field
           textarea name="content" required="true"
         input name="post_id" type="hidden" value="#{@data[:id]}"
-        input name="parent_id" type="hidden"
+        input name="parent_id" type="hidden" value="0"
         button.ui.black.submit.icon.button 提交
   javascript:
     $(document).ready(function(){
-      $("a.reply").click(function () {
+      $("a.reply").click(function (){
         var id = $(this).data("id");
         $("input[name=parent_id]").val(id);
         var author = $(this).parent().siblings('a.author').data("name");
-        $("textarea[name=content]").val("@" + author + " ").focus();
+        var textarea = $("textarea[name=content]");
+        var origin_text = textarea.val() + ' ';
+        textarea.val(origin_text + "@" + author + " ").focus();
       });
     });
 

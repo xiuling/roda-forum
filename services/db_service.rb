@@ -26,7 +26,7 @@ module DbService
   end
   def self.get_post(id)
     post = ForumModel::Posts.where(id: id).first
-    post[:comments] = ForumModel.get_comments_by_postId(id)
+    post[:comments] = ForumModel.get_comments_by_post_id(id)
     return post
   end
   def self.add_post_comment(content, post_id, parent_id, user_id)

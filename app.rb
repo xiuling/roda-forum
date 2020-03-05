@@ -64,7 +64,7 @@ class Forum < Roda
           if !user.nil?
             session['user'] = r.params['username']
             session['user_id'] = user.id
-            r.redirect '/'
+            r.redirect r.referrer
           end
         end
         r.redirect '/login'

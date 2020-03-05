@@ -30,7 +30,7 @@ DB.create_table? :comments do
   primary_key :id
   foreign_key :user_id, :users, :on_delete=>:cascade, :on_update=>:cascade
   foreign_key :post_id, :posts, :on_delete=>:cascade, :on_update=>:cascade
-  Integer :parent_id # 回复的评论id
+  Integer :parent_id, default: 0 # 回复的评论id
   String :content, null: false
   DateTime :create_at, null: false
   DateTime :update_at, null: false

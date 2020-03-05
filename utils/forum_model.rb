@@ -6,7 +6,7 @@ module ForumModel
   def self.get_all_posts
     Db["select posts.id, posts.title, posts.updated_at, users.name from posts inner join users on posts.user_id=users.id order by posts.updated_at desc limit 20"]
   end
-  def self.get_comments_by_postId(id)
+  def self.get_comments_by_post_id(id)
     Db["select comments.id, comments.content, comments.updated_at, users.name from comments inner join users on comments.user_id=users.id where post_id='#{id}'order by comments.updated_at desc limit 20"]
   end
   class Users < Sequel::Model
